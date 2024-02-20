@@ -74,4 +74,6 @@ train_time_end_model = timer()
 total_train_time_model = print_train_time(start=train_time_start_model,
                                            end=train_time_end_model,
                                            device=device)
-     
+
+
+torch.save(model, 'vgg16.pt')
