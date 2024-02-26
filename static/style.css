@@ -1,0 +1,77 @@
+/* static/style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('/static/backgroundimg.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    color: #0766ad; /* Text color */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2{
+    color: antiquewhite;
+}
+
+.upload-section,
+.sample-section {
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(39, 55, 77, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.upload-section form,
+.sample-section form {
+    text-align: center;
+    margin-top: 20px;
+    color: antiquewhite;
+}
+
+.upload-section input,
+.sample-section select {
+    margin-top: 10px;
+}
+
+.sample-images {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sample-image {
+    max-width: 180px;
+    max-height: 120px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#sampleForm {
+    margin-top: 20px;
+    color: antiquewhite;
+}
+
+button {
+    background-color: rgba(82,109,130, 0.8); /* Green */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Add more styles as needed */

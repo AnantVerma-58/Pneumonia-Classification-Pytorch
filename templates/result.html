@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" type="text/css" href="/static/result_style.css">
+</head>
+
+<body>
+    <h1>Prediction Result</h1>
+
+    <!-- Display the uploaded image -->
+    <img src="{{uploaded_filename}}" alt="Uploaded Image">
+
+    <!-- Display the prediction result and probabilities -->
+    <p>Prediction: {{ prediction }}</p>
+    <p>Probabilities: {{ probabilities }}</p>
+
+    <!-- You can add more elements as needed -->
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

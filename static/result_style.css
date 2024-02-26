@@ -1,0 +1,54 @@
+/* static/result-style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('/static/backgroundimg.jpg');
+    color: #fff; /* White text color */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #fff; /* White color for heading */
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 180px;
+    max-height: 120px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Darker box shadow */
+    transition: transform 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+img:hover {
+    transform: scale(1.1); /* Enlarge the image on hover */
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Button styles */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #009688; /* Teal color for button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #00796B; /* Darker teal on hover */
+}
+
+/* Add more styles as needed */

@@ -1,0 +1,48 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Ray Image Classification</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    <h1>X-Ray Image Classification</h1>
+    
+    <!-- Form for uploading an image -->
+    <div class="upload-section">
+        <form action="/uploadfile/" method="post" enctype="multipart/form-data">
+            <input type="file" aria-label="file upload" name="file" accept=".png, .jpg, .jpeg">
+            <button type="submit">Classify Uploaded Image</button>
+        </form>
+    </div>
+
+    <!-- Form for selecting a sample image -->
+    <div class="sample-section">
+        <h2>Choose a Sample Image</h2>
+        <div class="sample-images">
+            <img class='sample-image' src="/static/samples/sample1.jpeg" alt="Sample 1">
+            <img class='sample-image' src="/static/samples/sample2.jpeg" alt="Sample 2">
+            <img class='sample-image' src="/static/samples/sample3.jpeg" alt="Sample 3">
+            <img class='sample-image' src="/static/samples/sample4.jpeg" alt="Sample 4">
+        </div>
+        <form id="sampleForm">
+            <label for="sampleNumber">Select Sample Number:</label>
+            <select id="sampleNumber" name="sampleNumber">
+                <option value="1">Sample 1</option>
+                <option value="2">Sample 2</option>
+                <option value="3">Sample 3</option>
+                <option value="4">Sample 4</option>
+            </select>
+            <button type="button" onclick="submitSampleForm()">Classify Sample Image</button>
+        </form>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
