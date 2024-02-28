@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url('/static/backgroundimg.jpg'); /* Replace with your background image path */
+    background-image: url('/app/app/static/backgroundimg.jpg'); /* Replace with your background image path */
     background-size: cover;
     background-position: center;
     color: #0766ad; /* Text color */

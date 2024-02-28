@@ -160,7 +160,9 @@ cython_debug/
 #.idea/
 chest-xray-pneumonia.zip
 chest_xray
-trials.ipynb
-mlruns
-second_trails.ipynb
-vgg16.pt
+# trials.ipynb
+# mlruns
+# second_trails.ipynb
+vgg16_trial.pt
+vgg16_trial_jit.pt
+vgg16_final_model.pt

@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url('/static/backgroundimg.jpg');
+    background-image: url('/app/app/static/backgroundimg.jpg');
     color: #fff; /* White text color */
 }
 

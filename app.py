@@ -10,17 +10,17 @@ import torch
 from torchvision import transforms
 from torch.nn import functional as F
 import os
-from model_inference import inference
-
-UPLOAD_DIR = "static"
+# from model_inference import inference
+# from utils import UPLOAD_DIR
+from torchvision.models import VGG16_Weights
 app = FastAPI()
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/static/uploads", StaticFiles(directory="static/uploads"), name="uploads")
+UPLOAD_DIR = "app/app/static"
+app.mount("/app/app/static", StaticFiles(directory="static"), name="static")
+app.mount("/app/app/static/uploads", StaticFiles(directory="static/uploads"), name="uploads")
 from torchvision.models import VGG16_Weights
 
 def load_vgg16_model():
-    return torch.jit.load('vgg16_final_model_jit.pt').to('cpu')
+    return torch.jit.load('app/app/vgg16_final_model_jit.pt').to('cpu')
 
 def image_transform():
     weights = VGG16_Weights.DEFAULT
@@ -37,6 +37,36 @@ def classify_image(model, image):
     probabilities = F.softmax(output_logits, dim=1).squeeze(dim=0)
     return torch.argmax(probabilities).item(), probabilities.tolist()
 
+def image_transform():
+    weights = VGG16_Weights.DEFAULT
+    auto_transforms = weights.transforms()
+    return auto_transforms
+
+def inference(image_path:str=None):
+    vgg16_model = torch.jit.load('app/app/vgg16_final_model_jit.pt').to('cpu')
+    vgg16_model.eval()
+
+    # Load and preprocess the image
+    image_path = image_path  # Replace with the actual path to your image
+    img = Image.open(image_path).convert('RGB')  # Ensure the image is in RGB format
+    transform = image_transform()
+    img = transform(img)
+    img = img.unsqueeze(0)  # Add a batch dimension
+
+    # Perform the prediction
+    with torch.no_grad():
+        output_logits = vgg16_model(img)
+
+    # Apply softmax externally if needed
+    probabilities = F.softmax(output_logits, dim=1)
+    # print("probability : ",probabilities)
+    # Get the predicted class index
+    predicted_class = torch.argmax(probabilities).item()
+    probabilities = probabilities.squeeze(dim=0).tolist()
+    # print(f"Predicted class: {predicted_class}, Probability: {probabilities[0][predicted_class].item()}")
+    class_labels = ["Normal","Pneumonia"]
+    # print(f"Predicted class: {predicted_class}, Class Name: {class_labels[predicted_class]}, Probability: {probabilities}")
+    return {"Predicted Class":predicted_class, "Class Label":class_labels[predicted_class], "probabilities":probabilities}
 # Load the VGG16 model
 # vgg16_model = 
 
@@ -115,7 +145,7 @@ async def create_upload_file(background_tasks: BackgroundTasks,
     # os.remove(selected_image)
     # print(proabiblites, class_label)
     # print("HI")
-    template_context.update({"uploaded_filename":f"/static/uploads/{file.filename}",
+    template_context.update({"uploaded_filename":f"app/app/static/uploads/{file.filename}",
                              "prediction":class_label,
                              "probabilities":proabiblites})
     # print(template_context)
@@ -146,11 +176,11 @@ async def show_sample(sample_image: str = Form(...), template_context: dict = De
     # Extract the sample number from the selected image string
     sample_number = int(sample_image.split()[-1])
 
-    infer = inference(image_path=f"static/samples/sample{sample_number}.jpeg")
+    infer = inference(image_path=f"app/app/static/samples/sample{sample_number}.jpeg")
     probabilities, class_label = infer["probabilities"], infer["Class Label"]
 
     template_context.update({
-        "uploaded_filename": f"/static/samples/sample{sample_number}.jpeg",
+        "uploaded_filename": f"app/app/static/samples/sample{sample_number}.jpeg",
         "prediction": class_label,
         "probabilities": probabilities
     })

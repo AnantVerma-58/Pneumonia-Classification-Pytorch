@@ -16,3 +16,4 @@ def device(device:str = None) -> str:
         return device
 
 epochs = 10
+UPLOAD_DIR = "static"
